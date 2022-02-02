@@ -1,0 +1,58 @@
+# 1. heapq 사용하지 않고 푼것 
+def solution1(scoville, K):
+    # 정답
+    answer = 0
+    # 총 섞은 횟수 
+    cnt =0
+
+    while (1):
+        scoville.sort()
+        # 섞은 횟수 횟수
+        cnt +=1
+        # 가장 맵지 않은 음식
+        a=scoville.pop(0)
+        # 두번째로 맵지 않은 음식
+        b=scoville.pop(0)
+        # 섞은 음식의 스코빌 지수
+        new=a+(b*2)
+        # 새로운 스코빌 지수 리스트
+        scoville.insert(0,new)
+				# 스코빌 지수 정렬
+        scoville.sort()
+				# 가장 작은 스코빌 지수가 K 보다 크면 cnt 리턴
+        if(scoville[0]>=K):
+            return cnt 
+				# 리스트에 남은 원소 갯수가 1보다 작으면 -1 리턴
+        if(len(scoville)<=1):
+            return -1
+
+
+    return answer
+    
+ # 2. heapq 사용해서 다시 분 푼제 
+ 
+ def solution2(scoville, K):
+    # 정답
+    answer = 0
+    # 총 섞은 횟수 
+    cnt =0
+    while (1):
+        scoville.sort()
+        # 섞은 횟수 횟수
+        cnt +=1
+        # 가장 맵지 않은 음식
+        a=scoville.pop(0)
+        # 두번째로 맵지 않은 음식
+        b=scoville.pop(0)
+        # 섞은 음식의 스코빌 지수
+        new=a+(b*2)
+        # 새로운 스코빌 지수 리스트
+        scoville.insert(0,new)
+        scoville.sort()
+        if(scoville[0]>=K):
+            return cnt 
+        if(len(scoville)<=1):
+            return -1
+
+
+    return answer
