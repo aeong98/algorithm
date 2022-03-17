@@ -31,3 +31,4 @@ for i in range(T):
     N=int(input())
     solution(N)
 
+ 
