@@ -1,3 +1,29 @@
+class Queue{
+    constructor(){
+        this.queue=[];
+        this.front=0;
+        this.rear=0;
+    }
+
+    enqueue(value){
+        this.queue[this.rear++]=value;
+    }
+
+    dequeue(){
+        const value=this.queue[this.front];
+        delete this.queue[this.front];
+        this.front+=1;
+        return value;
+    }
+
+    isEmpty(){
+        return this.rear===this.front;
+    }
+}
+
+
+
+
 function solution(n, edge){
     // 길이가 n+1인 이차원 배열 만들기
     const graph=Array.from(Array(n+1), ()=>[]);
@@ -14,12 +40,13 @@ function solution(n, edge){
 
 
     // BFS
-    const queue=[1];
-    while (queue.length > 0){
-        const src= queue.shift(); // shift 는 O[n] 이지만 요소가 적을 경우에는 자바스크립트 엔진에서 최적화를 해줌.
+    const queue=new Queue();
+    queue.enqueue(1)
+    while (queue.isEmpty()){
+        const src= queue.dequeue(); 
         for (const dist of graph[src]){
             if (distance[dist]==0){
-                queue.push(dist);
+                queue.enqeueu(dist);
                 distance[dist]=distance[src]+1;
             }
         }
